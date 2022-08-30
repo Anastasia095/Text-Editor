@@ -3,12 +3,22 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
+
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
 // TODO: Add CSS loaders and babel to webpack.
 
 //reference webpack.config.js activity 28
 module.exports = () => {
   return {
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          enforce: "pre",
+          use: ["source-map-loader"],
+        },
+      ],
+    },
     mode: 'development',
     entry: {
       main: './src/js/index.js',
